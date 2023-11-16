@@ -37,9 +37,32 @@ header {
 }
 
 .sort {
-    display:flex;
+    display: flex;
     width: 20%;
     height: 100%;
     background-color: #dad7ca;
     overflow: auto;
+}
+
+
+.mainDiv {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: black
+}
+
+.sortDiv {
+    width: 20%;
+    height: 100%;
+    background-color: white;
+    overflow: auto;
+    padding: 2%
+}
+
+.filteringDiv {
+    margin: 2%;
+    background-color: lightgray;
+    padding: 2%;
+    border-radius: 2%
 }

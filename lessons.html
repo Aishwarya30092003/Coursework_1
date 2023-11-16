@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+    <script src="product.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <title>Your Website</title>
+    <title>After School Hub</title>
 </head>
 
 <body>
@@ -27,19 +28,29 @@
             </div>
         </div>
     </header>
+    <div class="mainDiv">
+        <div class="sortDiv">
+            <div class="filteringDiv">
+                <p style="text-align: center;">FITLER</p>
+                <p style="font-weight: bold">Sort By</p>
+                <label>
 
-
-    <div style="display: flex; height: 100vh; width: 100%; background-color:black;">
-        <div class="filter" style="width: 20%; height: 100%; background-color: black; overflow: auto; padding: 2%;">
-            <div style="margin: 2%; background-color: #a3b18a; padding: 2%; border-radius: 2%;">
-                <p>Sort function</p>
+                    <input type="radio" value="subject" v-model="filtering">Subject
+                    <br>
+                    <input type="radio" value="location" v-model="filtering">Location
+                    <br>
+                    <input type="radio" value="available slots" v-model="filtering">Available Slots
+                    <br>
+                    <input type="radio" value="fees" v-model="filtering">Fees
+                    
+                </label>
+                <label>
+                    <p style="font-weight: bold">Sort Order</p>
+                    <input type="radio" value="ascending" v-model="filterOrder">Ascending
+                    <br>
+                    <input type="radio" value="descending" v-model="filterOrder">Desending
+                </label>
             </div>
         </div>
-
-    </div>
-    <div style="display: flex; height: 100vh; width: 100%; background-color:black;">
-        
-    </div>
-</body>
 
 </html>
