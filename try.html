@@ -59,7 +59,18 @@
                                 {{product.availableInventory - cartCount(product.id)}} left!</span>
                         </div>
                     </div>
+                    <!--ORDER INFORMATION-->
+                    <div style="color: white;">
+                        <h2>Order Information</h2>
+                        <p>First Name: {{order.firstName}} </p>
+                        <p>Last Name: {{order.lastName}} </p>
+                        <p>Phone: {{order.phone}} </p>
+                    </div>
 
+
+                    <!--PLACE ORDER BUTTON-->
+                    <button v-on:click="submitForm">Place Order</button>
+                </div>
 
         </main>
     </div>
@@ -71,19 +82,19 @@
         </div>
         <div v-else>
             <!--CHECKOUT INFORMATION-->
-        <h2>Checkout</h2>
-        <p>
-            <strong>First Name:</strong>
-            <!--This input field is bound to 'firstName' in the 'order' object-->
-            <!-- <input v-model="order.firstName"/> -->
-            <input v-model.trim="order.firstName" />
-        </p>
-        <p>
-            <strong>Last Name:</strong>
-            <!--This input field is bound to 'lastName' in the 'order' object-->
-            <!-- <input v-model="order.lastName"/> -->
-            <input v-model.trim="order.lastName" />
-        </p>
+            <h2>Checkout</h2>
+            <p>
+                <strong>First Name:</strong>
+                <!--This input field is bound to 'firstName' in the 'order' object-->
+                <!-- <input v-model="order.firstName"/> -->
+                <input v-model.trim="order.firstName" />
+            </p>
+            <p>
+                <strong>Last Name:</strong>
+                <!--This input field is bound to 'lastName' in the 'order' object-->
+                <!-- <input v-model="order.lastName"/> -->
+                <input v-model.trim="order.lastName" />
+            </p>
         </div>
     </div>
 
@@ -99,7 +110,7 @@
             order: {
                 firstName: '',
                 lastName: '',
-                address: ''
+                phone: ''
             },
             cart: [], //array to store items in shopping cart
         },
