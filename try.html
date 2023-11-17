@@ -59,44 +59,39 @@
                                 {{product.availableInventory - cartCount(product.id)}} left!</span>
                         </div>
                     </div>
-                    <!--ORDER INFORMATION-->
+                    <div v-else>
+
+
+                        <!-- PLACE ORDER BUTTON -->
+                        <div class="cart-items">
+                            <div v-for="product in cartProducts" class="cartProducts">
+                                <figure>
+                                    <img v-bind:src="product.image" height="100px" width="100px">
+                                </figure>
+                                <h2 v-text="product.title"></h2>
+                                <p v-text="product.description"></p>
+                                <br>
+                                <p>Price: {{product.price}} </p>
+                                <br>
+                                <p>Quantity: {{cartCount(product.id)}}</p>
+                                <button v-on:click="removeProduct(product.id)">remove</button>
+                            </div>
+                        </div>
+                    </div>
                     <div style="color: white;">
                         <h2>Order Information</h2>
                         <p>First Name: {{order.firstName}} </p>
                         <p>Last Name: {{order.lastName}} </p>
                         <p>Phone: {{order.phone}} </p>
+                        <button v-on:click="submitForm">Place Order</button>
                     </div>
+                    
 
-
-                    <!--PLACE ORDER BUTTON-->
-                    <button v-on:click="submitForm">Place Order</button>
                 </div>
 
-        </main>
-    </div>
 
-    </div>
-    <div v-else>
-        <div v-if="cartItemCount == 0">
-            cart empty
-        </div>
-        <div v-else>
-            <!--CHECKOUT INFORMATION-->
-            <h2>Checkout</h2>
-            <p>
-                <strong>First Name:</strong>
-                <!--This input field is bound to 'firstName' in the 'order' object-->
-                <!-- <input v-model="order.firstName"/> -->
-                <input v-model.trim="order.firstName" />
-            </p>
-            <p>
-                <strong>Last Name:</strong>
-                <!--This input field is bound to 'lastName' in the 'order' object-->
-                <!-- <input v-model="order.lastName"/> -->
-                <input v-model.trim="order.lastName" />
-            </p>
-        </div>
-    </div>
+            </div>
+        </main>
 
     </div>
 </body>
@@ -151,6 +146,21 @@
                     return 0;
                 }
                 return productsArray.sort(compare);
+            },
+            cartProducts() {
+                let productsArray = this.products.slice(0);
+                let cartProducts = [];
+                for (let i = 0; i < productsArray.length; i++) {
+                    for (let j = 0; j < this.cart.length; j++) {
+                        if (productsArray[i].id == this.cart[j]) {
+                            cartProducts.push(productsArray[i])
+                            break;
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+                return cartProducts;
             }
 
         }
