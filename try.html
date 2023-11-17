@@ -14,21 +14,21 @@
 </head>
 
 <body>
-    <header>
-        <div class="navbar">
-            <div class="logo">
-                <h1> After School Hub </h1>
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button>Search</button>
-            </div>
-            <div class="cart-icon">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-        </div>
-    </header>
     <div id="app">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    <h1> After School Hub </h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button>Search</button>
+                </div>
+                <button class="fas fa-shopping-cart" v-on:click="showCheckout" :disabled="cartItemCount === 0">
+                    {{cartItemCount}}
+                </button>
+            </div>
+        </header>
         <main>
             <div class="mainDiv" style="display: flex; height: 100vh; width: 100%; background-color:black;">
                 <div class="sortDiv">
@@ -36,8 +36,8 @@
                         <p>Sort</p>
                     </div>
                 </div>
-                <div class="productMainDiv" >
-                    <div class="products" v-if="showProduct" >
+                <div class="productMainDiv">
+                    <div class="products" v-if="showProduct">
                         <div class="productDetails" v-for="product in sortedProducts">
                             <figure>
                                 <!--bind 'src' attr to 'product.image' in 'data'-->
@@ -59,9 +59,35 @@
                                 {{product.availableInventory - cartCount(product.id)}} left!</span>
                         </div>
                     </div>
-                </div>
 
-            </div>
+
+        </main>
+    </div>
+
+    </div>
+    <div v-else>
+        <div v-if="cartItemCount == 0">
+            cart empty
+        </div>
+        <div v-else>
+            <!--CHECKOUT INFORMATION-->
+        <h2>Checkout</h2>
+        <p>
+            <strong>First Name:</strong>
+            <!--This input field is bound to 'firstName' in the 'order' object-->
+            <!-- <input v-model="order.firstName"/> -->
+            <input v-model.trim="order.firstName" />
+        </p>
+        <p>
+            <strong>Last Name:</strong>
+            <!--This input field is bound to 'lastName' in the 'order' object-->
+            <!-- <input v-model="order.lastName"/> -->
+            <input v-model.trim="order.lastName" />
+        </p>
+        </div>
+    </div>
+
+    </div>
 </body>
 <script type="text/javascript">
     let webstore = new Vue({ //The Vue instance
@@ -73,31 +99,17 @@
             order: {
                 firstName: '',
                 lastName: '',
-                address: '',
-                city: '',
-                zip: '',
-                state: '',
-                method: 'Home',
-                // gift: false,
-                sendGift: 'Send as Gift',
-                dontSendGift: 'Do Not Send As Gift'
+                address: ''
             },
-            states: {
-                AL: 'Alabama',
-                AR: 'Arizona',
-                CA: 'California',
-                NV: 'Nevada'
-            },
-
             cart: [], //array to store items in shopping cart
         },
         methods: {
             addToCart(product) {
                 this.cart.push(product.id);
-                // console.log(this.cart);
+                console.log('Cart:', this.cart);
             },
-            showCheckout() {
-                this.showProduct = this.showProduct ? false : true;
+            showCheckout: function () {
+                this.showProduct = !this.showProduct;
             },
             submitForm() { alert('Order Submitted!') },
             canAddToCart(product) { // moved it here because computed property because we want to pass our produc in and we cant do it in computed property.
