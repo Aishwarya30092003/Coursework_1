@@ -107,7 +107,9 @@ header {
   background-color: black;
   flex-wrap: wrap; 
   justify-content: space-around; 
-  align-items: flex-start 
+  /* align-items: flex-start; */
+  display: flex;
+  flex-direction: column;
 }
 .cartProducts {
   margin: 2%;
@@ -116,7 +118,7 @@ header {
   width: 40%;
   border: 4px solid rgb(202, 139, 202);
   text-align: center;
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 /* CSS */
