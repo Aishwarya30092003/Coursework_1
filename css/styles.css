@@ -45,18 +45,19 @@ header {
 }
 
 
-.mainDiv {
+.mainDiv  {
   display: flex;
   height: 100vh;
   width: 100%;
   background-color: black
 }
 
+
+
 .sortDiv {
   width: 20%;
   height: 100%;
   background-color: black;
-  overflow: auto;
   padding: 2%
 }
 
@@ -92,6 +93,22 @@ header {
 
 }
 
+.cartMainDiv {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  overflow: auto;
+  padding: 2%;
+}
+.cart-items {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  align-items: flex-start 
+}
 .cartProducts {
   margin: 2%;
   background-color: lightgrey;
@@ -99,6 +116,7 @@ header {
   width: 40%;
   border: 4px solid rgb(202, 139, 202);
   text-align: center;
+  box-sizing: border-box
 }
 
 /* CSS */

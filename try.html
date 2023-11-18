@@ -21,16 +21,15 @@
                     <h1> After School Hub </h1>
                 </div>
                 <div class="search-bar">
-                    <input type="text" placeholder="Search..." v-model="searchQuery">
+                    <input type="text" placeholder="Search..." v-model="searchQuery" @input="filterProducts">
                 </div>
                 <button class="fas fa-shopping-cart" v-on:click="showCheckout" :disabled="cartItemCount < 1">
                     {{cartItemCount}}
                 </button>
-
             </div>
         </header>
         <main>
-            <div class="mainDiv">
+            <div class="mainDiv" v-if="showProduct">
                 <div class="sortDiv">
                     <div class="filteringDiv">
                         <p style="font-weight: bold">Sort By:</p>
@@ -53,10 +52,9 @@
                     </div>
                 </div>
                 <div class="productMainDiv">
-                    <div class="products" v-if="showProduct">
+                    <div class="products">
                         <div class="productDetails" v-for="product in sortedProducts">
                             <figure>
-                                <!--bind 'src' attr to 'product.image' in 'data'-->
                                 <img v-bind:src="product.image" style="height: 100px; width: 100px">
                             </figure>
                             <h2 v-text="product.title"></h2>
@@ -66,8 +64,7 @@
                             <button class="addToCart" v-on:click="addToCart(product)" v-if="canAddToCart(product)">
                                 Add To Cart
                             </button>
-                            <!--This button will be displayed otherwise-->
-                            <button class="addToCart" disabled="disabled" v-else>
+                            <button style="opacity:0.5" class="addToCart" disabled="disabled" v-else>
                                 Add To Cart
                             </button>
                             <span v-if="product.availableInventory === cartCount(product.id)">All out!</span>
@@ -75,38 +72,39 @@
                                 {{product.availableInventory - cartCount(product.id)}} left!</span>
                         </div>
                     </div>
-                    <div v-else>
-                        <!-- PLACE ORDER BUTTON -->
-                        <div class="cart-items">
-                            <div v-for="product in cartProducts" class="cartProducts">
-                                <figure>
-                                    <img v-bind:src="product.image" height="100px" width="100px">
-                                </figure>
-                                <h2 v-text="product.title"></h2>
-                                <p v-text="product.description"></p>
-                                <br>
-                                <p>Fees: {{product.Fees}} </p>
-                                <br>
-                                <p>Quantity: {{cartCount(product.id)}}</p>
-                                <button class="removeButton" v-on:click="deleteFromCart(product.id)">Remove</button>
-                            </div>
-                            <div style="color: white;">
-                                <h2>Order Information</h2>
-                                <label for="firstName">First Name:</label>
-                                <input type="text" id="firstName" v-model="order.firstName" @input="validateOrderForm">
-                                <br>
-                                <label for="lastName">Last Name:</label>
-                                <input type="text" id="lastName" v-model="order.lastName" @input="validateOrderForm">
-                                <br>
-                                <label for="phone">Phone:</label>
-                                <input type="text" id="phone" v-model="order.phone" @input="validateOrderForm">
-                                <br>
-                                <button v-on:click="submitForm" :disabled="!isOrderFormValid">Place Order</button>
-                            </div>
-                        </div>
+
+                </div>
+
+            </div>
+            <div class="cartMainDiv" v-else>
+                <div class="cart-items">
+                    <div v-for="product in cartProducts" class="cartProducts">
+                        <figure>
+                            <img v-bind:src="product.image" height="100px" width="100px">
+                        </figure>
+                        <h2 v-text="product.title"></h2>
+                        <p v-text="product.description"></p>
+                        <p>Fees: {{product.Fees}} </p>
+                        <p>Quantity: {{cartCount(product.id)}}</p>
+                        <button class="removeButton" v-on:click="deleteFromCart(product.id)">Remove</button>
+                    </div>
+                    <br>
+                    <div style="color: white;">
+                        <h2>Order Information</h2>
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" v-model="order.firstName" @input="validateOrderForm">
+                        <br><br>
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" v-model="order.lastName" @input="validateOrderForm">
+                        <br><br>
+                        <label for="phone">Phone:</label>
+                        <input type="text" id="phone" v-model="order.phone" @input="validateOrderForm">
+                        <br><br>
+                        <button v-on:click="submitForm" :disabled="!isOrderFormValid">Place Order</button>
                     </div>
                 </div>
             </div>
+
         </main>
     </div>
     <script type="text/javascript">
@@ -117,7 +115,7 @@
                 sitename: 'After school hub',
                 products: products,
                 filter: '',
-                sortOrder: 'ascending', // Default sort order
+                sortOrder: 'ascending',
                 order: {
                     firstName: '',
                     lastName: '',
@@ -125,6 +123,7 @@
                 },
                 cart: [],
                 isOrderFormValid: false,
+                searchQuery: '',
             },
             methods: {
                 addToCart(product) {
@@ -150,7 +149,7 @@
                     return count;
                 },
                 deleteFromCart(id) {
-                    let found = false
+                    let found = false;
 
                     function cartRefresh(cartItem) {
                         if (found == false) {
@@ -175,7 +174,13 @@
 
                     this.isOrderFormValid = isNameValid && isPhoneValid;
                 },
-
+                filterProducts() {
+                    const query = this.searchQuery.toLowerCase();
+                    this.filteredProducts = this.sortedProducts.filter(product =>
+                        product.title.toLowerCase().includes(query) ||
+                        product.location.toLowerCase().includes(query)
+                    );
+                },
             },
             computed: {
                 cartItemCount: function () {
@@ -183,7 +188,10 @@
                 },
                 sortedProducts() {
                     let productsArray = this.products.slice(0);
-
+                    productsArray = productsArray.filter(product =>
+                        product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                        product.location.toLowerCase().includes(this.searchQuery.toLowerCase())
+                    );
                     switch (this.filter) {
                         case 'fees':
                             productsArray.sort((a, b) => (this.sortOrder === 'ascending' ? a.Fees - b.Fees : b.Fees - a.Fees));
@@ -198,7 +206,6 @@
                             productsArray.sort((a, b) => (this.sortOrder === 'ascending' ? a.availableInventory - b.availableInventory : b.availableInventory - a.availableInventory));
                             break;
                         default:
-                            // If no filter is selected, maintain the original order
                             break;
                     }
 
@@ -219,6 +226,36 @@
                     }
                     return cartProducts;
                 },
+                // filteredProducts() {
+                //     return this.sortedProducts.filter(product =>
+                //         product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+                //         product.location.toLowerCase().includes(this.searchQuery.toLowerCase())
+                //     );
+                // },
+                // filteredAndSortedProducts() {
+                //     // Applying both sorting and filtering
+                //     let filteredProductsArray = this.filteredProducts.slice(0);
+
+                //     switch (this.filter) {
+                //         case 'fees':
+                //             filteredProductsArray.sort((a, b) => (this.sortOrder === 'ascending' ? a.Fees - b.Fees : b.Fees - a.Fees));
+                //             break;
+                //         case 'subject':
+                //             filteredProductsArray.sort((a, b) => (this.sortOrder === 'ascending' ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)));
+                //             break;
+                //         case 'location':
+                //             filteredProductsArray.sort((a, b) => (this.sortOrder === 'ascending' ? a.location.localeCompare(b.location) : b.location.localeCompare(a.location)));
+                //             break;
+                //         case 'slots':
+                //             filteredProductsArray.sort((a, b) => (this.sortOrder === 'ascending' ? a.availableInventory - b.availableInventory : b.availableInventory - a.availableInventory));
+                //             break;
+                //         default:
+                //             // If no filter is selected, maintain the original order
+                //             break;
+                //     }
+
+                //     return filteredProductsArray;
+                // },
             },
         });
     </script>
