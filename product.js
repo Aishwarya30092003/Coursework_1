@@ -73,7 +73,7 @@ let products = [
     },
     {
         id: 1010,
-        title: "Coding nd Programming Class",
+        title: "Coding/Programming Class",
         Fees: 550.00,
         image: "./images/coding.png",
         location: "Dubai",

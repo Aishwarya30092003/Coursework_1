@@ -21,12 +21,12 @@
                     <h1> After School Hub </h1>
                 </div>
                 <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                    <button>Search</button>
+                    <input type="text" placeholder="Search..." v-model="searchQuery">
                 </div>
-                <button class="fas fa-shopping-cart" v-on:click="showCheckout" :disabled="cartItemCount === 0">
+                <button class="fas fa-shopping-cart" v-on:click="showCheckout" :disabled="cartItemCount < 1">
                     {{cartItemCount}}
                 </button>
+
             </div>
         </header>
         <main>
