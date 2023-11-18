@@ -33,7 +33,17 @@
             <div class="mainDiv" style="display: flex; height: 100vh; width: 100%; background-color:black;">
                 <div class="sortDiv">
                     <div class="filteringDiv">
-                        <p>Sort</p>
+                        <p>Filter By:</p>
+                        <br>
+                        <label>
+                            <input type="radio" value="fees" v-model="filter">Fees
+                            <br>
+                            <input type="radio" value="subj" v-model="filter">Subject
+                            <br>
+                            <input type="radio" value="loc" v-model="filter">Location
+                            <br>
+                            <input type="radio" value="slots" v-model="filter">Slots
+                        </label>
                     </div>
                 </div>
                 <div class="productMainDiv">
@@ -60,8 +70,6 @@
                         </div>
                     </div>
                     <div v-else>
-
-
                         <!-- PLACE ORDER BUTTON -->
                         <div class="cart-items">
                             <div v-for="product in cartProducts" class="cartProducts">
@@ -74,18 +82,18 @@
                                 <p>Price: {{product.price}} </p>
                                 <br>
                                 <p>Quantity: {{cartCount(product.id)}}</p>
-                                <button v-on:click="removeProduct(product.id)">remove</button>
+                                <button class="removeButton" v-on:click="deleteFromCart(product.id)">Remove</button>
+                            </div>
+                            <div style="color: white;">
+                                <h2>Order Information</h2>
+                                <p>First Name: {{order.firstName}} </p>
+                                <p>Last Name: {{order.lastName}} </p>
+                                <p>Phone: {{order.phone}} </p>
+                                <button v-on:click="submitForm">Place Order</button>
                             </div>
                         </div>
                     </div>
-                    <div style="color: white;">
-                        <h2>Order Information</h2>
-                        <p>First Name: {{order.firstName}} </p>
-                        <p>Last Name: {{order.lastName}} </p>
-                        <p>Phone: {{order.phone}} </p>
-                        <button v-on:click="submitForm">Place Order</button>
-                    </div>
-                    
+
 
                 </div>
 
@@ -102,6 +110,7 @@
             showProduct: true,
             sitename: 'After school hub',
             products: products,
+            filter: '',
             order: {
                 firstName: '',
                 lastName: '',
@@ -129,7 +138,23 @@
                     }
                 }
                 return count;
-            }
+            },
+            deleteFromCart(id) {
+                let found = false
+                function cartRefresh(cartItem) {
+                    if (found == false) {
+                        if (cartItem == id) {
+                            found = true;
+                        } else {
+                            return cartItem;
+                        }
+                    } else {
+                        return cartItem;
+                    }
+                }
+                this.cart = this.cart.filter(cartRefresh);
+            },
+
         },
         computed: { //the computed property object
             cartItemCount: function () {  //the property name
