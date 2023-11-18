@@ -2,7 +2,7 @@ let products = [
     {
         id: 1001,
         title: "Dance Class",
-        price: 200.00,
+        Fees: 200.00,
         image: "./images/dancing.png",
         location: "Abu dhabi",
         availableInventory: 5,
@@ -10,7 +10,7 @@ let products = [
     {
         id: 1002,
         title: "Yoga Class",
-        price: 250.00,
+        Fees: 250.00,
         image: "./images/yoga.png",
         location: "Dubai",
         availableInventory: 5,
@@ -18,7 +18,7 @@ let products = [
     {
         id: 1003,
         title: "Gardening Class",
-        price: 300.00,
+        Fees: 300.00,
         image: "./images/gardening.png",
         location: "Sharjah",
         availableInventory: 5,
@@ -26,7 +26,7 @@ let products = [
     {
         id: 1004,
         title: "Martial Arts Class",
-        price: 350.00,
+        Fees: 350.00,
         image: "./images/martialArts.png",
         location: "Fujairah",
         availableInventory: 5,
@@ -34,7 +34,7 @@ let products = [
     {
         id: 1005,
         title: "Astronomy Class",
-        price: 500.00,
+        Fees: 500.00,
         image: "./images/astronomy.png",
         location: "Al Ain",
         availableInventory: 5,
@@ -42,7 +42,7 @@ let products = [
     {
         id: 1006,
         title: "Board Game Class",
-        price: 100.00,
+        Fees: 100.00,
         image: "./images/boardGame.png",
         location: "Dubai",
         availableInventory: 5,
@@ -50,7 +50,7 @@ let products = [
     {
         id: 1007,
         title: "Cooking Class",
-        price: 300.00,
+        Fees: 300.00,
         image: "./images/cooking.png",
         location: "Abu dhabi",
         availableInventory: 5,
@@ -58,7 +58,7 @@ let products = [
     {
         id: 1008,
         title: "Photography Class",
-        price: 450.00,
+        Fees: 450.00,
         image: "./images/photography.png",
         location: "Ajman",
         availableInventory: 5,
@@ -66,7 +66,7 @@ let products = [
     {
         id: 1009,
         title: "Art and Craft Class",
-        price: 400.00,
+        Fees: 400.00,
         image: "./images/artAndCraft.png",
         location: "Sharjah",
         availableInventory: 5,
@@ -74,7 +74,7 @@ let products = [
     {
         id: 1010,
         title: "Coding nd Programming Class",
-        price: 550.00,
+        Fees: 550.00,
         image: "./images/coding.png",
         location: "Dubai",
         availableInventory: 5,
