@@ -92,10 +92,16 @@
                             </div>
                             <div style="color: white;">
                                 <h2>Order Information</h2>
-                                <p>First Name: {{order.firstName}} </p>
-                                <p>Last Name: {{order.lastName}} </p>
-                                <p>Phone: {{order.phone}} </p>
-                                <button v-on:click="submitForm">Place Order</button>
+                                <label for="firstName">First Name:</label>
+                                <input type="text" id="firstName" v-model="order.firstName" @input="validateOrderForm">
+                                <br>
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" id="lastName" v-model="order.lastName" @input="validateOrderForm">
+                                <br>
+                                <label for="phone">Phone:</label>
+                                <input type="text" id="phone" v-model="order.phone" @input="validateOrderForm">
+                                <br>
+                                <button v-on:click="submitForm" :disabled="!isOrderFormValid">Place Order</button>
                             </div>
                         </div>
                     </div>
@@ -118,6 +124,7 @@
                     phone: ''
                 },
                 cart: [],
+                isOrderFormValid: false,
             },
             methods: {
                 addToCart(product) {
@@ -159,6 +166,16 @@
 
                     this.cart = this.cart.filter(cartRefresh);
                 },
+                validateOrderForm() {
+                    const nameRegex = /^[A-Za-z]+$/;
+                    const phoneRegex = /^[0-9]+$/;
+
+                    const isNameValid = nameRegex.test(this.order.firstName) && nameRegex.test(this.order.lastName);
+                    const isPhoneValid = phoneRegex.test(this.order.phone);
+
+                    this.isOrderFormValid = isNameValid && isPhoneValid;
+                },
+
             },
             computed: {
                 cartItemCount: function () {
