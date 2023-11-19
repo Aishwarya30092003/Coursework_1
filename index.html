@@ -72,9 +72,7 @@
                                 {{product.availableInventory - cartCount(product.id)}} left!</span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
             <div class="cartMainDiv" v-else>
                 <div class="cart-items">
@@ -89,7 +87,6 @@
                         <button class="removeButton" v-on:click="deleteFromCart(product.id)">Remove</button>
                     </div>
                 </div>
-
                 <div class="order-info" style="color: white; margin-top: 20px;">
                     <h2>Order Information</h2>
                     <label for="firstName">First Name:</label>
@@ -104,9 +101,6 @@
                     <button v-on:click="submitForm" :disabled="!isOrderFormValid">Place Order</button>
                 </div>
             </div>
-
-
-
         </main>
     </div>
     <script type="text/javascript">

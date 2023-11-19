@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  background-color: #000;
 }
 
 header {
@@ -47,7 +48,7 @@ header {
 
 .mainDiv  {
   display: flex;
-  height: 100vh;
+  /* height: 100vh; */
   width: 100%;
   background-color: black
 }
@@ -94,31 +95,30 @@ header {
 }
 
 .cartMainDiv {
-  width: 100%;
-  height: 100%;
+  /* width: 100%; */
   background-color: black;
-  overflow: auto;
   padding: 2%;
+  height: auto;
+  overflow: auto;
 }
+
 .cart-items {
   display: flex;
-  height: 100vh;
-  width: 100%;
-  background-color: black;
-  flex-wrap: wrap; 
-  justify-content: space-around; 
-  /* align-items: flex-start; */
-  display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 1%; /* Add some padding to create space between products */
 }
+
 .cartProducts {
-  margin: 2%;
+  flex: 0 0 42%; /* Set the width of each product to 48% to leave space for two products per row */
+  margin: 1%; /* Add margin to create space between products */
   background-color: lightgrey;
   padding: 2%;
-  width: 40%;
   border: 4px solid rgb(202, 139, 202);
   text-align: center;
   box-sizing: border-box;
+  word-wrap: break-word;
 }
 
 /* CSS */
