@@ -1,21 +1,25 @@
+/* Styling margin and font-family for the entire page */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #000;
 }
 
+/* Styling for the header section */
 header {
   background-color: #333;
   color: #fff;
   padding: 10px;
 }
 
+/* Styling for the navigation bar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* Styling for the site logo within the navigation bar */
 .logo a {
   text-decoration: none;
   color: #fff;
@@ -23,20 +27,24 @@ header {
   font-weight: bold;
 }
 
+/* Styling for the search bar within the navigation bar */
 .search-bar {
   margin: 0 10px;
 }
 
+/* Styling for the input field within the search bar */
 .search-bar input {
   padding: 5px;
   width: 200px;
 }
 
+/* Styling for the cart icon image */
 .cart-icon img {
   width: 30px;
   height: 30px;
 }
 
+/* Styling for a container with class 'sort' */
 .sort {
   display: flex;
   width: 20%;
@@ -45,31 +53,31 @@ header {
   overflow: auto;
 }
 
-
-.mainDiv  {
+/* Styling for the main content container */
+.mainDiv {
   display: flex;
-  /* height: 100vh; */
   width: 100%;
-  background-color: black
+  background-color: black;
 }
 
-
-
+/* Styling for a container with class 'sortDiv' */
 .sortDiv {
   width: 20%;
   height: 100%;
   background-color: black;
-  padding: 2%
+  padding: 2%;
 }
 
+/* Styling for a container with class 'filteringDiv' */
 .filteringDiv {
   margin: 2%;
   background-color: lightgray;
   padding: 2%;
   border-radius: 2%;
-  width: 100%
+  width: 100%;
 }
 
+/* Styling for the main product display container */
 .productMainDiv {
   width: 80%;
   height: 100%;
@@ -78,12 +86,14 @@ header {
   padding: 2%;
 }
 
+/* Styling for a container with class 'products' */
 .products {
   padding-left: 15px;
   display: flex;
   flex-wrap: wrap;
 }
 
+/* Styling for individual product details container */
 .productDetails {
   margin: 2%;
   background-color: lightgray;
@@ -91,28 +101,29 @@ header {
   width: 40%;
   border: 4px solid rgb(202, 139, 202);
   text-align: center;
-
 }
 
+/* Styling for the shopping cart container */
 .cartMainDiv {
-  /* width: 100%; */
   background-color: black;
   padding: 2%;
   height: auto;
   overflow: auto;
 }
 
+/* Styling for a container with class 'cart-items' */
 .cart-items {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: flex-start;
-  padding: 1%; /* Add some padding to create space between products */
+  padding: 1%;
 }
 
+/* Styling for individual products in the shopping cart */
 .cartProducts {
-  flex: 0 0 42%; /* Set the width of each product to 48% to leave space for two products per row */
-  margin: 1%; /* Add margin to create space between products */
+  flex: 0 0 42%;
+  margin: 1%;
   background-color: lightgrey;
   padding: 2%;
   border: 4px solid rgb(202, 139, 202);
@@ -121,7 +132,7 @@ header {
   word-wrap: break-word;
 }
 
-/* CSS */
+/* Styling for the 'Add to Cart' button */
 .addToCart {
   appearance: button;
   background-color: #000;
@@ -149,32 +160,36 @@ header {
   white-space: nowrap;
 }
 
+/* Styling for the 'Add to Cart' button focus state */
 .addToCart:focus {
   text-decoration: none;
 }
 
+/* Styling for the 'Add to Cart' button hover state */
 .addToCart:hover {
   text-decoration: none;
 }
 
+/* Styling for the 'Add to Cart' button active state */
 .addToCart:active {
   box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
   outline: 0;
 }
 
+/* Styling for the 'Add to Cart' button active state when not disabled */
 .addToCart:not([disabled]):active {
   box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
   transform: translate(2px, 2px);
 }
 
+/* Media query for styling the 'Add to Cart' button on larger screens */
 @media (min-width: 768px) {
   .addToCart {
     padding: 12px 50px;
   }
 }
 
-
-/* CSS */
+/* Styling for the 'Remove' button in the shopping cart */
 .removeButton {
   background: #FF4742;
   border: 1px solid #FF4742;
@@ -184,7 +199,7 @@ header {
   color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
-  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-family: nunito, roboto, proxima-nova, "proxima nova", sans-serif;
   font-size: 16px;
   font-weight: 800;
   line-height: 16px;
@@ -200,6 +215,7 @@ header {
   vertical-align: middle;
 }
 
+/* Styling for the 'Remove' button hover and active states */
 .removeButton:hover,
 .removeButton:active {
   background-color: initial;
@@ -207,6 +223,7 @@ header {
   color: #FF4742;
 }
 
+/* Styling for the 'Remove' button active state */
 .removeButton:active {
   opacity: .5;
 }
